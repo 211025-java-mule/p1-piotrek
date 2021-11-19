@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,12 +13,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
-@Component
+@Service
 public class PersonService {
 
     private ObjectMapper objectMapper; // why is this working?
     private Person person;
-
 
     @Autowired
     public PersonService(ObjectMapper objectMapper, Person person) {
@@ -32,7 +32,7 @@ public class PersonService {
         InputStream response = connection.getInputStream();
         String body = new String(response.readAllBytes());
 
-        person = new Person();
+        Person person = new Person();
         JsonNode nameNode = objectMapper.readTree(body).path("name");
         String name = nameNode.toString().replace("\"", "");
         JsonNode countryNode = objectMapper.readTree(body).path("country");
