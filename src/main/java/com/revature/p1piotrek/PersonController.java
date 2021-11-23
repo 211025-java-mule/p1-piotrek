@@ -1,8 +1,8 @@
 package com.revature.p1piotrek;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
@@ -13,17 +13,9 @@ public class PersonController {
     @Autowired
     PersonService personService;
 
-    @GetMapping("/piotrek")
-    public Person getPiotr() throws IOException {
+    @GetMapping("/{name}")
+    public Person getPersonByName(@PathVariable String name) throws IOException {
 
-        return personService.getPerson("Piotrek");
+        return personService.getPerson(name);
     }
-    @GetMapping("/pawel")
-    public Person getPawel() throws IOException {
-
-        return personService.getPerson("Pawel");
-    }
-
-
-
 }
