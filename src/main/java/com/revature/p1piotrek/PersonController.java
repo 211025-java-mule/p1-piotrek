@@ -1,9 +1,7 @@
 package com.revature.p1piotrek;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,17 +14,11 @@ import java.util.List;
 
 @RestController
 public class PersonController {
-//    @Autowired
-//    PersonServiceOLD personServiceOLD;
-
-//    @GetMapping("/person/{name}")
-//    public Person getPersonByName(@PathVariable String name) throws IOException {
-//
-//        return personServiceOLD.getPerson(name);
-//    }
-
     @Autowired
     PersonService personService;
+    @Autowired
+    ObjectMapper objectMapper;
+
 
     @GetMapping("/persons")
     private List<Person> getAllPersons() {
@@ -50,8 +42,7 @@ public class PersonController {
     }
 
     @GetMapping("/persons/name/{name}")
-    private int savePersonWithName(@PathVariable("name") String inputName) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
+    private String savePersonWithName(@PathVariable("name") String inputName) throws IOException {
         URL url = new URL("https://api.nationalize.io/?name=" + inputName);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         InputStream response = connection.getInputStream();
@@ -65,9 +56,8 @@ public class PersonController {
         person.setName(name);
         person.setCountries(listOfCountries);
 
-
         personService.saveOrUpdate(person);
-        return person.getId();
+        return "Person added with id: " + person.getId();
     }
 
 }

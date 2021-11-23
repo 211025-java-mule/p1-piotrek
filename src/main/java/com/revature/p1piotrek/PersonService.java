@@ -10,6 +10,7 @@ public class PersonService {
     @Autowired
     PersonRepository personRepository;
 
+
     public List<Person> findAll() {
         return (List<Person>) personRepository.findAll();
     }
