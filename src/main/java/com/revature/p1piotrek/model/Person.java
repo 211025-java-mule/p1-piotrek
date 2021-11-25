@@ -1,5 +1,6 @@
 package com.revature.p1piotrek.model;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -14,6 +15,7 @@ import javax.persistence.Id;
 @ToString
 @Entity
 @Component
+@EqualsAndHashCode
 public class Person {
     @Id
     @GeneratedValue
