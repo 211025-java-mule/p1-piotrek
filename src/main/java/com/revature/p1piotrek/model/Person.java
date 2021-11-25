@@ -1,4 +1,4 @@
-package com.revature.p1piotrek;
+package com.revature.p1piotrek.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,12 +8,12 @@ import org.springframework.stereotype.Component;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.List;
 
 @Getter
 @Setter
 @ToString
 @Entity
+@Component
 public class Person {
     @Id
     @GeneratedValue

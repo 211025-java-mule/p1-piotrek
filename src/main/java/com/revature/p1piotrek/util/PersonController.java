@@ -1,14 +1,10 @@
-package com.revature.p1piotrek;
+package com.revature.p1piotrek.util;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.p1piotrek.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.List;
 
 
@@ -42,22 +38,9 @@ public class PersonController {
     }
 
     @GetMapping("/persons/name/{name}")
-    private String savePersonWithName(@PathVariable("name") String inputName) throws IOException {
-        URL url = new URL("https://api.nationalize.io/?name=" + inputName);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        InputStream response = connection.getInputStream();
-        String body = new String(response.readAllBytes());
-
-        Person person = new Person();
-        JsonNode nameNode = objectMapper.readTree(body).path("name");
-        String name = nameNode.toString().replace("\"", "");
-        JsonNode countryNode = objectMapper.readTree(body).path("country");
-        String listOfCountries = countryNode.toString();
-        person.setName(name);
-        person.setCountries(listOfCountries);
-
+    private String savePersonWithName(@PathVariable("name") String inputName) {
+        Person person = personService.savePersonFromGlobalAPI(inputName);
         personService.saveOrUpdate(person);
         return "Person added with id: " + person.getId();
     }
-
 }
