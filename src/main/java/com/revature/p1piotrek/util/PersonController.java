@@ -15,7 +15,6 @@ public class PersonController {
     @Autowired
     ObjectMapper objectMapper;
 
-
     @GetMapping("/persons")
     private List<Person> getAllPersons() {
         return personService.findAll();
