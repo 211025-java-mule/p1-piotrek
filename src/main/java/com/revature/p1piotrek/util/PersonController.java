@@ -15,6 +15,11 @@ public class PersonController {
     @Autowired
     ObjectMapper objectMapper;
 
+    @GetMapping("/hello")
+    public String getHello(){
+        return "Hello from 8081";
+    }
+
     @GetMapping("/persons")
     private List<Person> getAllPersons() {
         return personService.findAll();
