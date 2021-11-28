@@ -38,13 +38,16 @@ public class PersonService {
 
     /**
      * Method saves parametrized person to PersonRepository
+     *
      * @param person object of person that is saved
      */
     public void saveOrUpdate(Person person) {
         personRepository.save(person);
     }
+
     /**
      * Method deletes person from PersonRepository
+     *
      * @param id Method consumes 'id' as a parameter to select object for deletion
      */
     public void delete(int id) {
@@ -53,6 +56,7 @@ public class PersonService {
 
     /**
      * Method performs GET method with parametrized inputName. It is using Global API
+     *
      * @param inputName inputName is passed to URL. Then object of Person is created
      * @return Person with set 'name' and 'countries' is returned.
      */
@@ -102,4 +106,16 @@ public class PersonService {
         return person;
     }
 
+    public boolean checkIfNameIsPresentInRepo(String name) {
+        boolean ispresent = false;
+
+        Iterable<Person> all = personRepository.findAll();
+        for (Person person : all) {
+            if (person.getName().equals(name)) {
+                ispresent = true;
+                break;
+            }
+        }
+        return ispresent;
+    }
 }
