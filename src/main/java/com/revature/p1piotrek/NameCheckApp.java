@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.io.IOException;
 
 @SpringBootApplication
-public class NameNationalityApplication {
+public class NameCheckApp {
 
 	public static void main(String[] args) throws IOException {
-		SpringApplication.run(NameNationalityApplication.class, args);
+		SpringApplication.run(NameCheckApp.class, args);
 
 	}
 }
