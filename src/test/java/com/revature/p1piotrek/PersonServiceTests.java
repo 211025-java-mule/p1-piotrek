@@ -42,12 +42,12 @@ class PersonServiceTests {
 
 	@Test
 	public void testNameGettingPersonFromGlobalAPI(){
-		Person person = personService.savePersonFromGlobalAPI("Piotr");
+		Person person = personService.getPersonFromNationalizeIo("Piotr");
 		Assertions.assertEquals("Piotr" , person.getName());
 	}
 	@Test
 	public void testCountriesGettingPersonFromGlobalAPI(){
-		Person person = personService.savePersonFromGlobalAPI("Pawel");
+		Person person = personService.getPersonFromNationalizeIo("Pawel");
 		String countries = "[{\"country_id\":\"PL\",\"probability\":0.3468221788928576},{\"country_id\":\"IE\",\"probability\":0.22488776100317076},{\"country_id\":\"IS\",\"probability\":0.10871806244178477}]";
 		Assertions.assertEquals(countries , person.getCountries());
 	}

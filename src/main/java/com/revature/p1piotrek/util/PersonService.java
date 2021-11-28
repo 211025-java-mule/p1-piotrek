@@ -21,24 +21,42 @@ public class PersonService {
     @Autowired
     ObjectMapper objectMapper;
 
-
+    /**
+     * @return Method returns all Person objects stored in PersonRepository
+     */
     public List<Person> findAll() {
         return (List<Person>) personRepository.findAll();
     }
 
+    /**
+     * @param id Method consumes 'id' in order to perform GET method for specific person.
+     * @return Method returns Person with 'id' that has been searched for
+     */
     public Person getPersonById(int id) {
         return personRepository.findById(id).get();
     }
 
+    /**
+     * Method saves parametrized person to PersonRepository
+     * @param person object of person that is saved
+     */
     public void saveOrUpdate(Person person) {
         personRepository.save(person);
     }
-
+    /**
+     * Method deletes person from PersonRepository
+     * @param id Method consumes 'id' as a parameter to select object for deletion
+     */
     public void delete(int id) {
         personRepository.deleteById(id);
     }
 
-    public Person savePersonFromGlobalAPI(String inputName) {
+    /**
+     * Method performs GET method with parametrized inputName. It is using Global API
+     * @param inputName inputName is passed to URL. Then object of Person is created
+     * @return Person with set 'name' and 'countries' is returned.
+     */
+    public Person getPersonFromNationalizeIo(String inputName) {
         URL url = null;
         try {
             url = new URL("https://api.nationalize.io/?name=" + inputName);
