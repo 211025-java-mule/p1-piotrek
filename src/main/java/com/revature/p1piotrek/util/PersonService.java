@@ -106,16 +106,20 @@ public class PersonService {
         return person;
     }
 
+    /**
+     * @param name Method checks if name is already present in Repository
+     * @return Method returns true or false
+     */
     public boolean checkIfNameIsPresentInRepo(String name) {
-        boolean ispresent = false;
+        boolean isPresent = false;
 
         Iterable<Person> all = personRepository.findAll();
         for (Person person : all) {
             if (person.getName().equals(name)) {
-                ispresent = true;
+                isPresent = true;
                 break;
             }
         }
-        return ispresent;
+        return isPresent;
     }
 }

@@ -72,11 +72,21 @@ public class PersonController {
         }
     }
 
+    /**
+     * @param name Method checks if name is already present in Repository
+     * @return Method returns true or false
+     */
+
     @GetMapping("/persons/checkIfNameIPresent/{name}")
     public boolean checkIfNameIsPresent(@PathVariable("name") String name) {
         return personService.checkIfNameIsPresentInRepo(name);
     }
 
+    /**
+     * Method returns object of Person class by searching for its name
+     * @param name String name is passed in this method
+     * @return If person by input name is found it is returned. If not person with nulls is returned
+     */
     @GetMapping("/person/{name}")
     public Person getPersonByName(@PathVariable("name") String name) {
         Iterable<Person> all = personRepository.findAll();
