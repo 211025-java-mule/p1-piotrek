@@ -4,7 +4,7 @@
 
 Application allows user to check probability of nationality based on their name. It is using global API:
 
->https://api.nationalize.io
+> https://api.nationalize.io
 
 Localhost port is 8081.
 
@@ -12,24 +12,24 @@ Localhost port is 8081.
 After entering name using below endpoint:
 
 Get method
->http://localhost:8081/persons/name/{name}
+> http://localhost:8081/persons/name/{name}
 
-results of searching is added to build in H2 database. 
+results of searching is added to build in H2 database.
 
 To see all of added entities please use:
 
 Get method
->http://localhost:8081/persons
+> http://localhost:8081/persons
 
 It is also possible to get person by id:
 
 Get method
->http://localhost:8081/persons/{id}
+> http://localhost:8081/persons/{id}
 
 And to delete person by id:
 
 Delete method
->http://localhost:8081/persons/{id}
+> http://localhost:8081/persons/{id}
 >
 <h3>Tech stack</h3>
 
@@ -43,7 +43,7 @@ Delete method
 
 <h3>Running</h3>
 
->mvn exec:java
+> mvn spring-boot:run
 
 <h3>Author</h3>
 
